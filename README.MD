@@ -5,10 +5,10 @@ Em seguida, compilamos o programa que executa o programa que vai reiniciar os se
 g++ -o inicia.exe executar-programa.cpp
 
 ## REQUERIMENTOS
-Você vai precisar das bibliotecas: <br /> 
-libgcc_s_seh-1.dll
-libstdc++-6.dll
-libwinpthread-1.dll
+Você vai precisar das seguintes bibliotecas para conseguir usar os programas: <br /> 
+- libgcc_s_seh-1.dll <br /> 
+- libstdc++-6.dll <br /> 
+- libwinpthread-1.dll
 <br /> 
 
 ## DESCRIÇÃO
