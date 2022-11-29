@@ -15,7 +15,9 @@ Stop a windows Service with the name JBOSS and then start again after 45 seconds
 */
 
 int main()
+
 {
+   
     SC_HANDLE schSCManager = OpenSCManager(NULL, NULL, SC_MANAGER_ALL_ACCESS);
     if (schSCManager == NULL) {
         cout << "OpenSCManager failed (" << GetLastError() << ")" << endl;
@@ -33,25 +35,28 @@ int main()
         return 1;
     }
     if (ssp.dwCurrentState == SERVICE_STOPPED) {
-        cout << "Service is already stopped" << endl;
+        cout << "Servico JBOSS ja esta paralizado, reiniciando novamente..." << endl;
         // start the service
         if (!StartService(schService, 0, NULL)) {
-            cout << "StartService failed (" << GetLastError() << ")" << endl;
+            cout << "Iniciar o servicos do JBOSS falhou. (" << GetLastError() << ")" << endl;
             return 1;
         }
-        cout << "Service started" << endl;
+        cout << "Servico JBOSS inicializado" << endl;
         return 0;
     }
     if (!ControlService(schService, SERVICE_CONTROL_STOP, (LPSERVICE_STATUS)&ssp)) {
-        cout << "ControlService failed (" << GetLastError() << ")" << endl;
+        cout << "ControlService falhou (" << GetLastError() << ")" << endl;
         return 1;
     }
-    cout << "Service stopped" << endl;
+    cout << "Servico JBOSS paralizado" << endl;
     this_thread::sleep_for(chrono::seconds(45));
     if (!StartService(schService, 0, NULL)) {
-        cout << "StartService failed (" << GetLastError() << ")" << endl;
+        cout << "StartService falhou (" << GetLastError() << ")" << endl;
         return 1;
     }
-    cout << "Service started" << endl;
+    cout << "Servico JBOSS inicializado" << endl;
     return 0;
-}
+
+    }
+
+
